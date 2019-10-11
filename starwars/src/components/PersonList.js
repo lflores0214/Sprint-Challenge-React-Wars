@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PersonCard from "./PersonCard";
 import styled from "styled-components";
-import Button from "./Button"
+import Button from "./Button";
 
 const Container = styled.div`
   width: 90%;
@@ -14,7 +14,7 @@ const Container = styled.div`
   -webkit-box-shadow: -1px 1px 5px 9px #585445;
   -moz-box-shadow: -1px 1px 5px 9px #585445;
   box-shadow: -1px 1px 5px 9px #585445;
-  border-radius: 10px
+  border-radius: 10px;
 `;
 const PagContainer = styled.div`
   width: 90%;
@@ -31,7 +31,7 @@ const PagContainer = styled.div`
 
 export default function PersonList() {
   const [personData, setPersonData] = useState([]);
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     axios
@@ -63,12 +63,9 @@ export default function PersonList() {
             />
           );
         })}
-        
       </Container>
       <PagContainer>
-       <Button setPage={setPage}
-       page={page}/>
-      
+        <Button setPage={setPage} page={page} />
       </PagContainer>
     </>
   );
