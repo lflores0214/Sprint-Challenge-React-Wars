@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PersonCard from "./PersonCard";
 import styled from "styled-components";
-import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
+import Button from "./Button"
 
 const Container = styled.div`
   width: 90%;
@@ -14,6 +14,7 @@ const Container = styled.div`
   -webkit-box-shadow: -1px 1px 5px 9px #585445;
   -moz-box-shadow: -1px 1px 5px 9px #585445;
   box-shadow: -1px 1px 5px 9px #585445;
+  border-radius: 10px
 `;
 const PagContainer = styled.div`
   width: 90%;
@@ -24,15 +25,17 @@ const PagContainer = styled.div`
   margin: 3% 0 1.5% 5%;
   text-decoration: none;
   list-style-type: none;
+  align-item: center;
+  border-radius: 10px;
 `;
 
 export default function PersonList() {
   const [personData, setPersonData] = useState([]);
-  const [page, setPage] = useState([])
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
     axios
-      .get(`https://swapi.co/api/people/`)
+      .get(`https://swapi.co/api/people/?page=${page}`)
       .then(response => {
         console.log(response.data);
         setPersonData(response.data.results);
@@ -40,7 +43,7 @@ export default function PersonList() {
       .catch(error => {
         console.log("MAYDAY MAYDAY", error);
       });
-  }, []);
+  }, [page]);
 
   return (
     <>
@@ -60,22 +63,12 @@ export default function PersonList() {
             />
           );
         })}
+        
       </Container>
       <PagContainer>
-        <Pagination aria-label="Page navigation example">
-          <PaginationItem>
-            <PaginationLink first href='' />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink previous href='' />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink next href='' />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink last href='' />
-          </PaginationItem>
-        </Pagination>
+       <Button setPage={setPage}
+       page={page}/>
+      
       </PagContainer>
     </>
   );

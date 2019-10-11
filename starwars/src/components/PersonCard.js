@@ -1,17 +1,18 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react"
+import styled from "styled-components"
 
 
 
 
 const Card = styled.div`
-wdith: 40%;
+wdith: 20%;
 background-color: #2e557c;
 margin: 2% 2% 2% 2%;
 border: 2px solid #381010;
 padding: 2%;
 box-shadow: -1px 1px 3px 4px #203b56;
 color:#d7cfcf;
+border-radius: 5px;
 
 `;
 
